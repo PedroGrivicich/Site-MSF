@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR" style="height:100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médicos Sem Fronteiras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Merriweather:wght@700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="/_sdk/element_sdk.js"></script>
+    <script>
+        const defaultConfig = {
+            hero_title: "Médicos Sem Fronteiras",
+            hero_subtitle: "Levamos ajuda médica a quem mais precisa, não importa onde.",
+            background_color: "#ffffff",
+            surface_color: "#ee1d23",
+            text_color: "#1a1a1a",
+            primary_action_color: "#ee1d23",
+            secondary_action_color: "#333333",
+            font_family: "Source Sans 3",
+            font_size: 16
+        };
+
+        window.elementSdk.init({
+            defaultConfig,
+            onConfigChange: async (config) => {
+                const c = key => config[key] || defaultConfig[key];
+
+                document.getElementById('hero-title').textContent = c('hero_title');
+                document.getElementById('hero-subtitle').textContent = c('hero_subtitle');
+
+                const bg = c('background_color');
+                const surface = c('surface_color');
+                const text = c('text_color');
+                const primary = c('primary_action_color');
+                const secondary = c('secondary_action_color');
+                const font = c('font_family');
+                const size = c('font_size');
+
+                document.body.style.backgroundColor = bg;
+                document.body.style.color = text;
+                document.body.style.fontFamily = `${font}, sans-serif`;
+                document.body.style.fontSize = size + 'px';
+
+                document.querySelector('.top-bar').style.backgroundColor = surface;
+                document.getElementById('hero-title').style.fontSize = (size * 2.4) + 'px';
+                document.getElementById('hero-subtitle').style.fontSize = (size * 1.15) + 'px';
+
+                document.querySelectorAll('.section-title').forEach(el => {
+                    el.style.fontSize = (size * 1.5) + 'px';
+                    el.style.borderColor = surface;
+                });
+
+                document.querySelectorAll('.card').forEach(el => {
+                    el.style.borderColor = surface;
+                });
+
+                document.querySelectorAll('.card-emoji').forEach(el => {
+                    el.style.fontSize = (size * 2.5) + 'px';
+                });
+
+                document.querySelectorAll('.card h3').forEach(el => {
+                    el.style.fontSize = (size * 1.15) + 'px';
+                });
+
+                const btn = document.querySelector('.form-btn');
+                btn.style.backgroundColor = primary;
+
+                document.querySelector('.footer').style.backgroundColor = secondary;
+                document.querySelector('.footer').style.color = bg;
+
+                document.querySelectorAll('.stat-number').forEach(el => {
+                    el.style.color = surface;
+                    el.style.fontSize = (size * 2) + 'px';
+                });
+            },
+            mapToCapabilities: (config) => ({
+                recolorables: [
+                    { get: () => config.background_color || defaultConfig.background_color, set: v => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+                    { get: () => config.surface_color || defaultConfig.surface_color, set: v => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+                    { get: () => config.text_color || defaultConfig.text_color, set: v => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+                    { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: v => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+                    { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: v => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+                ],
+                borderables: [],
+                fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: v => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+                fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: v => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+            }),
+            mapToEditPanelValues: (config) => new Map([
+                ["hero_title", config.hero_title || defaultConfig.hero_title],
+                ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle]
+            ])
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="top-bar">AJUDA HUMANITÁRIA INDEPENDENTE E IMPARCIAL</div>
+        <nav class="nav" aria-label="Navegação principal">
+            <div class="logo">
+                <span class="logo-cross" aria-hidden="true"></span>
+                <span class="logo-text">MSF<br>Brasil</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#atuacao">Atuação</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1 id="hero-title">Médicos Sem Fronteiras</h1>
+            <p id="hero-subtitle">Levamos ajuda médica a quem mais precisa, não importa onde.</p>
+        </section>
+        <div class="stats-section">
+            <div class="stat">
+                <div class="stat-number">70+</div>
+                <div class="stat-label">Países</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">63K</div>
+                <div class="stat-label">Profissionais</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">50</div>
+                <div class="stat-label">Anos de atuação</div>
+            </div>
+        </div>
+        <section class="section" id="sobre">
+            <h2 class="section-title">Quem somos</h2>
+            <p style="font-size:15px; color:#555; line-height:1.7; max-width:700px;">Médicos Sem Fronteiras (MSF) é uma organização humanitária internacional que leva assistência médica a pessoas afetadas por conflitos armados, epidemias, desastres naturais e exclusão do acesso à saúde. Atuamos de forma independente, imparcial e neutra desde 1971.</p>
+        </section>
+        <section class="section" id="atuacao">
+            <h2 class="section-title">Áreas de atuação</h2>
+            <div class="cards">
+                <div class="card">
+                    <span class="card-emoji">🏥</span>
+                    <h3>Emergências</h3>
+                    <p>Respondemos rapidamente a crises humanitárias, conflitos e desastres naturais ao redor do mundo.</p>
+                </div>
+                <div class="card">
+                    <span class="card-emoji">💉</span>
+                    <h3>Vacinação</h3>
+                    <p>Campanhas de imunização em massa para combater epidemias em regiões vulneráveis.</p>
+                </div>
+                <div class="card">
+                    <span class="card-emoji">🤝</span>
+                    <h3>Nutrição</h3>
+                    <p>Tratamento de desnutrição severa, especialmente em crianças menores de cinco anos.</p>
+                </div>
+            </div>
+        </section>
+        <section class="form-section" id="contato">
+            <h2 class="section-title">Entre em contato</h2>
+            <p>Quer saber mais sobre nosso trabalho ou como ajudar? Deixe seus dados abaixo.</p>
+            <form class="contact-form" action="#" method="post" onsubmit="event.preventDefault()">
+                <div>
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                </div>
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                </div>
+                <div>
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+                </div>
+                <div>
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
+                </div>
+                <button type="submit" class="form-btn">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2026 Médicos Sem Fronteiras — Página criada para fins acadêmicos</p>
+    </footer>
+</body>
+</html>
